@@ -93,7 +93,7 @@ const safetySettings = [
 
 async function run(prompt) {
   try {
-    console.log("Prompt:", prompt);
+    // console.log("Prompt:", prompt);
 
     const chatSession = model.startChat({
       generationConfig,
@@ -102,9 +102,10 @@ async function run(prompt) {
     });
 
     const result = await chatSession.sendMessage(prompt);
-
+    const response = result.response;
     // const result = await chatSession.sendMessage(prompt);
-     console.log(result.response.candidates[0].content.parts[0].text);
+     console.log(response.candidates[0].content.parts[0].text);
+     return response.candidates[0].content.parts[0].text;
 
     // Check if result.response exists
     if (!result.response) {
